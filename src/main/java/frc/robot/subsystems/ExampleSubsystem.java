@@ -4,11 +4,21 @@
 
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.simulation.EncoderSim;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class ExampleSubsystem extends SubsystemBase{
   /** Creates a new ExampleSubsystem. */
-  public ExampleSubsystem() {}
+  private EncoderSim m_encoder;
+  
+  public ExampleSubsystem() {
+    m_encoder = new EncoderSim(new Encoder(1,2));
+    
+  }
+  public ExampleSubsystem(EncoderSim encoder) {
+    m_encoder = encoder;
+  }
 
   @Override
   public void periodic() {
@@ -24,4 +34,11 @@ public class ExampleSubsystem extends SubsystemBase{
     System.out.println(string);
     return string;
   }
+
+public double getDistance_Inch() {
+  System.out.println("Encoder Distance = " + m_encoder.getDistance());
+    return m_encoder.getDistance();
+}
+
+
 }

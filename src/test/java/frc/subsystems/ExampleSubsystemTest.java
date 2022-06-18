@@ -1,21 +1,29 @@
+package frc.subsystems;
 import static org.junit.Assert.*;
 
 import edu.wpi.first.hal.HAL;
+import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.simulation.EncoderSim;
 import frc.robot.subsystems.ExampleSubsystem;
 import org.junit.*;
 
 public class ExampleSubsystemTest {
    ExampleSubsystem exampleSubsystem;
+   Encoder encoder;
+   EncoderSim encoderSim;
 
    @Before // this method will run before each test
    public void setup() {
       assert HAL.initialize(500, 0); // initialize the HAL, crash if failed
-      exampleSubsystem = new ExampleSubsystem(); // create our ExampleSubsystem.
+      encoder = new Encoder(0,1);
+      encoderSim = new EncoderSim(encoder);
+      exampleSubsystem = new ExampleSubsystem(encoderSim); // create our ExampleSubsystem.
    }
 
    @After // this method will run after each test
    public void shutdown() throws Exception {
       // exampleSubsystem.close(); // destroy our exampleSubsystem object
+      encoder.close();
    }
 
    @Test // marks this method as a test
