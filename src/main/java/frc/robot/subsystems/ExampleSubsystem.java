@@ -4,11 +4,28 @@
 
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants.exampleSubsystem_Constants;
 
 public class ExampleSubsystem extends SubsystemBase {
   /** Creates a new ExampleSubsystem. */
-  public ExampleSubsystem() {}
+  private Encoder m_encoder;
+  private Spark m_spark;
+
+  public ExampleSubsystem() {
+    m_encoder = new Encoder(exampleSubsystem_Constants.encoderA,
+        exampleSubsystem_Constants.encoderB);
+
+    m_spark = new Spark(exampleSubsystem_Constants.MOTOR_PWM);
+
+  }
+
+  public ExampleSubsystem(Encoder encoder, Spark spark) {
+    m_encoder = encoder;
+    m_spark = spark;
+  }
 
   @Override
   public void periodic() {
@@ -19,4 +36,19 @@ public class ExampleSubsystem extends SubsystemBase {
   public void simulationPeriodic() {
     // This method will be called once per scheduler run during simulation
   }
+
+  public String helloWorld(String string) {
+    System.out.println(string);
+    return string;
+  }
+
+  public double getDistance_Inch() {
+    System.out.println("Encoder Distance = " + m_encoder.getDistance());
+    return m_encoder.getDistance();
+  }
+
+  public void setSpark(double percent){
+    m_spark.set(percent);
+  }
+
 }
