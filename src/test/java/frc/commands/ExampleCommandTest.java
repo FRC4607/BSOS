@@ -4,7 +4,6 @@ import static org.junit.Assert.*;
 import edu.wpi.first.hal.HAL;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.simulation.EncoderSim;
-import frc.robot.Constants.exampleSubsystem_Constants;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.subsystems.ExampleSubsystem;
 
@@ -20,18 +19,17 @@ public class ExampleCommandTest {
 
     @Before // this method will run before each test
     public void setup() {
-       assert HAL.initialize(500, 0); // initialize the HAL, crash if failed
-       encoder = new Encoder(exampleSubsystem_Constants.encoderA,
-                                exampleSubsystem_Constants.encoderB);
-       encoderSim = new EncoderSim(encoder);
-       subsystem = new ExampleSubsystem(encoder); // create our ExampleSubsystem.
+        assert HAL.initialize(500, 0); // initialize the HAL, crash if failed
+
+        subsystem = new ExampleSubsystem(true); // create our ExampleSubsystem.
+        
+       encoderSim = subsystem.mEncoderSim;
        
     }
  
     @After // this method will run after each test
     public void shutdown() throws Exception {
-       // exampleSubsystem.close(); // destroy our exampleSubsystem object
-       encoder.close();
+       subsystem.close(); // destroy our exampleSubsystem object
     }
 
     @Test // Is Initilized
