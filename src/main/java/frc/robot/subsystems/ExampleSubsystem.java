@@ -7,16 +7,18 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.simulation.EncoderSim;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants.exampleSubsystem_Constants;
 
 public class ExampleSubsystem extends SubsystemBase{
   /** Creates a new ExampleSubsystem. */
-  private EncoderSim m_encoder;
+  private Encoder m_encoder;
   
   public ExampleSubsystem() {
-    m_encoder = new EncoderSim(new Encoder(1,2));
+    m_encoder = new Encoder(exampleSubsystem_Constants.encoderA,
+                            exampleSubsystem_Constants.encoderB);
     
   }
-  public ExampleSubsystem(EncoderSim encoder) {
+  public ExampleSubsystem(Encoder encoder) {
     m_encoder = encoder;
   }
 
