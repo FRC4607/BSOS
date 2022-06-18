@@ -18,5 +18,6 @@ public final class Constants {
     public static final class exampleSubsystem_Constants{
         public static final int encoderA = 0;
         public static final int encoderB = 1;
+        public static final int MOTOR_PWM = 1;
     }
 }

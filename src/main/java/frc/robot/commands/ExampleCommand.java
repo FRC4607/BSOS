@@ -12,15 +12,17 @@ public class ExampleCommand extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final ExampleSubsystem m_subsystem;
   private final double m_setpoint;
+  private final double m_speed;
 
   /**
    * Creates a new ExampleCommand.
    *
    * @param subsystem The subsystem used by this command.
    */
-  public ExampleCommand(double setpoint, ExampleSubsystem subsystem) {
+  public ExampleCommand(double setpoint, double speed, ExampleSubsystem subsystem) {
     m_subsystem = subsystem;
     m_setpoint = setpoint;
+    m_speed = speed;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(subsystem);
   }
@@ -33,11 +35,15 @@ public class ExampleCommand extends CommandBase {
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {}
+  public void execute() {
+    m_subsystem.setSpark(m_speed);
+  }
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+    m_subsystem.setSpark(0);
+  }
 
   // Returns true when the command should end.
   @Override
