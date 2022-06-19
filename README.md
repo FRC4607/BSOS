@@ -21,7 +21,7 @@ The purpose of implementing a process to use a style guide is to make the code-b
         "editor.insertSpaces": true
     },
     "editor.formatOnSave": false,
-    "java.checkstyle.configuration": "${workspaceFolder}\\google_checks.xml",
+    "java.checkstyle.configuration": "${workspaceFolder}/google_checks.xml",
     "java.checkstyle.version": "10.3",
     ```
 4. Apply 4607-specific settings:
