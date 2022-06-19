@@ -96,6 +96,7 @@ pmd {
 checkstyle {
     toolVersion = '10.3'
     ignoreFailures = false
+    maxWarnings = 0
 }
 
 // Simulation configuration (e.g. environment variables).
