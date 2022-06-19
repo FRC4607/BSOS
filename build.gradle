@@ -3,6 +3,7 @@ plugins {
     id "edu.wpi.first.GradleRIO" version "2022.4.1"
     id "com.github.spotbugs" version "5.0.8"
     id "net.ltgt.errorprone" version "2.0.2"
+    id "pmd"
 }
 
 sourceCompatibility = JavaVersion.VERSION_11
@@ -81,6 +82,14 @@ spotbugsMain {
             stylesheet = 'fancy-hist.xsl'
         }
     }
+}
+
+pmd {
+    consoleOutput = true
+    toolVersion = "6.46.0"
+    rulesMinimumPriority = 5
+    ruleSetFiles = files("pmdruleset.xml")
+    ruleSets = [] // This needs to be here otherwise the custom ruleset doesn't work.
 }
 
 // Simulation configuration (e.g. environment variables).
