@@ -8,19 +8,40 @@ How do we want to manage our Github workflow?
 
 ### Using the Google Java Style Guide in Visual Studio Code
 
-The purpose of implementing a process to use a style guide is to make the code-base easier to read. Without it, this can become an issue when several people are actively participating in a shared environment. Follow the steps below to setup automated formatting and live linting based on the style guide from Google.
+The purpose of implementing a process to use a style guide is to make the code-base easier to read. Without it, style inconsistency can become an issue when several people are actively participating in a shared workspace. Follow the steps below to setup live linting using *Checkstyle for Java*. We will be using a slighly modified version of the Java style guide from Google.
 
-1. Copy *eclipse-java-google-style.xml* to the project's root from https://github.com/google/styleguide/blob/gh-pages/eclipse-java-google-style.xml
-2. Install, verify installation, *Extension Pack for Java*
-3. Install, verify installation, *Checkstyle for Java*
-4. Update *settings.json* with the following:
-    - Instruct the formatter to use the Google style guide by adding *"java.format.settings.url": "eclipse-java-google-style.xml"*
-    - Enable format on save by adding *"editor.formatOnSave": true*
-    - Instruct Checkstyle us use the Google stye guide by adding *"java.checkstyle.configuration": "/google_checks.xml"* 
-5. If desired, run the *Java: Open Java Formatter Settings with Preview* command to change a select few settings
-6. If desired, further modify settings in *eclipse-java-google-style.xml*
+1. Copy *google_checks.xml* to the project's root from https://github.com/checkstyle/checkstyle/blob/master/src/main/resources/google_checks.xml
+2. Install *Checkstyle for Java* from VS Code extensions
+3. Update *settings.json* by adding the following:
 
-For further information, see https://code.visualstudio.com/docs/java/java-linting and https://google.github.io/styleguide/javaguide.html
+    ```
+    "[java]": {
+        "editor.tabSize": 2,
+        "editor.detectIndentation": false,
+        "editor.insertSpaces": true
+    },
+    "editor.formatOnSave": false,
+    "java.checkstyle.configuration": "${workspaceFolder}\\google_checks.xml",
+    "java.checkstyle.version": "10.3",
+    ```
+4. Apply 4607-specific settings:
+
+    For member naming *m_lowerCamelCase*, replace
+
+        <module name="MemberName">
+            <property name="format" value="^[a-z][a-z0-9][a-zA-Z0-9]*$"/>
+
+    with
+
+        <module name="MemberName">
+            <property name="format" value="^m_[a-z][a-z0-9][a-zA-Z0-9]*$"/>
+
+
+For further information, see the following:
+
+- https://code.visualstudio.com/docs/java/java-linting
+- https://checkstyle.sourceforge.io/
+- https://google.github.io/styleguide/javaguide.html
 
 
 ## Unit testing
