@@ -4,6 +4,7 @@ plugins {
     id "com.github.spotbugs" version "5.0.8"
     id "net.ltgt.errorprone" version "2.0.2"
     id "pmd"
+    id 'checkstyle'
 }
 
 sourceCompatibility = JavaVersion.VERSION_11
@@ -74,7 +75,7 @@ dependencies {
 }
 
 spotbugsMain {
-    excludeFilter = file("spotbugsexclude.xml")
+    excludeFilter = file("config/spotbugsexclude.xml")
     reports {
         html {
             required = true
@@ -88,8 +89,13 @@ pmd {
     consoleOutput = true
     toolVersion = "6.46.0"
     rulesMinimumPriority = 5
-    ruleSetFiles = files("pmdruleset.xml")
+    ruleSetFiles = files("config/pmdruleset.xml")
     ruleSets = [] // This needs to be here otherwise the custom ruleset doesn't work.
+}
+
+checkstyle {
+    toolVersion = '10.3'
+    ignoreFailures = false
 }
 
 // Simulation configuration (e.g. environment variables).
