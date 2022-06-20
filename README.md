@@ -16,7 +16,7 @@ The purpose of implementing a process to use a style guide is to make the code-b
 
     ```
     "[java]": {
-        "editor.tabSize": 2,
+        "editor.tabSize": 4,
         "editor.detectIndentation": false,
         "editor.insertSpaces": true
     },
