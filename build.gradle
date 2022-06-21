@@ -97,6 +97,7 @@ checkstyle {
     toolVersion = '10.3'
     ignoreFailures = false
     maxWarnings = 0
+    config = resources.text.fromUri("https://raw.githubusercontent.com/FRC4607/common/main/google_checks.xml")
 }
 
 // Simulation configuration (e.g. environment variables).
